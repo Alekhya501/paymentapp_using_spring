@@ -159,7 +159,7 @@ body {
             }
         %>
              --%>
-        <form action="sendmoney" method="get">
+        <form action="sendMoney" method="get">
             <button class="send-money-btn">Send Money</button>
         </form>
     </div>

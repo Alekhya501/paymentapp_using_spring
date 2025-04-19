@@ -9,4 +9,7 @@ import com.alekhya.paymentapp.entities.BankAccountEntity;
 @Repository
 public interface BankAccRepository extends JpaRepository<BankAccountEntity,Integer>{
 	List<BankAccountEntity> findByUserUserId(int userId);
+	List<BankAccountEntity> findByUserUserIdNot(int userId);
+	BankAccountEntity findByAccountNumber(String accountNumber);
+
 }

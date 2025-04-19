@@ -1,6 +1,5 @@
 package com.alekhya.paymentapp.entities;
 
-
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -8,88 +7,95 @@ import java.time.LocalDateTime;
 @Table(name = "transactions")
 public class TransactionEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "transaction_id")
-    private Long transactionId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "txn_id")
+	private Long txnId;
 
-    // Link to Bank Account
-    @ManyToOne
-    @JoinColumn(name = "bank_account_id", referencedColumnName = "bank_account_id")
-    private BankAccountEntity bankAccount;
+	@ManyToOne
+	@JoinColumn(name = "sender_id", referencedColumnName = "user_id")
+	private UserEntity sender;
 
-    // Link to User (NEW)
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private UserEntity user;
+	@ManyToOne
+	@JoinColumn(name = "receiver_id", referencedColumnName = "user_id")
+	private UserEntity receiver;
 
-    @Column(name = "amount", nullable = false)
-    private double amount;
+	@Column(name = "source_type")
+	private String sourceType; // Example: "BANK", "WALLET"
 
-    @Column(name = "transaction_type", nullable = false)
-    private String transactionType; // e.g., "credit" or "debit"
+	@Column(name = "destination_type")
+	private String destinationType; // Example: "BANK", "WALLET"
 
-    @Column(name = "description")
-    private String description;
+	@Column(name = "amount")
+	private Double amount;
 
-    @Column(name = "transaction_date", nullable = false)
-    private LocalDateTime transactionDate;
+	@Column(name = "transaction_date")
+	private LocalDateTime txnDateTime;
+	@Column(name = "transaction_type")
+	private String transactionType;
 
-    // === Getters and Setters ===
+	// Getters and Setters
 
-    public Long getTransactionId() {
-        return transactionId;
-    }
+	public Long getTxnId() {
+		return txnId;
+	}
 
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
-    }
+	public void setTxnId(Long txnId) {
+		this.txnId = txnId;
+	}
 
-    public BankAccountEntity getBankAccount() {
-        return bankAccount;
-    }
+	public UserEntity getSender() {
+		return sender;
+	}
 
-    public void setBankAccount(BankAccountEntity bankAccount) {
-        this.bankAccount = bankAccount;
-    }
+	public void setSender(UserEntity sender) {
+		this.sender = sender;
+	}
 
-    public UserEntity getUser() {
-        return user;
-    }
+	public UserEntity getReceiver() {
+		return receiver;
+	}
 
-    public void setUser(UserEntity user) {
-        this.user = user;
-    }
+	public void setReceiver(UserEntity receiver) {
+		this.receiver = receiver;
+	}
 
-    public double getAmount() {
-        return amount;
-    }
+	public String getSourceType() {
+		return sourceType;
+	}
 
-    public void setAmount(double amount) {
-        this.amount = amount;
-    }
+	public void setSourceType(String sourceType) {
+		this.sourceType = sourceType;
+	}
 
-    public String getTransactionType() {
-        return transactionType;
-    }
+	public String getDestinationType() {
+		return destinationType;
+	}
 
-    public void setTransactionType(String transactionType) {
-        this.transactionType = transactionType;
-    }
+	public void setDestinationType(String destinationType) {
+		this.destinationType = destinationType;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public Double getAmount() {
+		return amount;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
 
-    public LocalDateTime getTransactionDate() {
-        return transactionDate;
-    }
+	public LocalDateTime getTxnDateTime() {
+		return txnDateTime;
+	}
 
-    public void setTransactionDate(LocalDateTime transactionDate) {
-        this.transactionDate = transactionDate;
-    }
+	public void setTxnDateTime(LocalDateTime txnDateTime) {
+		this.txnDateTime = txnDateTime;
+	}
+	public String getTransactionType() {
+	    return transactionType;
+	}
+
+	public void setTransactionType(String transactionType) {
+	    this.transactionType = transactionType;
+	}
 }
